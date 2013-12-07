@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 public class ParseHTML {
 	private Document doc;
 	private Document targyOldal;
-	public List<Targy> mTargyak = new ArrayList<Targy>();
+	public static List<Targy> mTargyak = new ArrayList<Targy>();
 	public void parse() throws IOException {
 		doc = Jsoup.connect("https://www.vik.bme.hu/kepzes/targyak/").get();
 		Elements subjects = doc.getElementsByAttributeValue("class", "subject_list");
