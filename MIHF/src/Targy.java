@@ -7,7 +7,7 @@ public class Targy {
 	public String mKovKod;
 	public String mKredit;
 	public String mFelev;
-
+	
 	public String getURL() {
 		return "https://www.vik.bme.hu" + relURL;
 	}

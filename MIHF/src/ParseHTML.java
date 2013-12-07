@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 public class ParseHTML {
 	private Document doc;
 	private Document targyOldal;
-	public static List<Targy> mTargyak = new ArrayList<Targy>();
+	public List<Targy> mTargyak = new ArrayList<Targy>();
 	public void parse() throws IOException {
 		doc = Jsoup.connect("https://www.vik.bme.hu/kepzes/targyak/").get();
 		Elements subjects = doc.getElementsByAttributeValue("class", "subject_list");
@@ -38,7 +38,7 @@ public class ParseHTML {
 		}
 		
 	}
-
+	
 	public Targy parseTargy(Targy targy) throws Exception {
 		targyOldal = Jsoup.connect(targy.getURL()).get();
 		Elements tmp = targyOldal.getAllElements();
@@ -53,7 +53,7 @@ public class ParseHTML {
 		else {
 			throw new Exception("T�rgy adatai nem stimmelnek a r�szletes aloldalon!");
 		}
-
+		
 		return targy;
 	}
 
