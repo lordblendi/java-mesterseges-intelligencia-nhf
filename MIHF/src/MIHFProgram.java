@@ -3,7 +3,6 @@ import java.io.IOException;
 
 public class MIHFProgram {
 	
-	private static ParseHTML parseHTML;
 	public static void main(String[] args) {
 		ParseHTML parseHTML = new ParseHTML();
 		try {
@@ -12,8 +11,8 @@ public class MIHFProgram {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(parseHTML.mTargyak);
-
+		System.out.println(parseHTML.mTargyak.get(1).mNev);
+		
 	}
 
 }
