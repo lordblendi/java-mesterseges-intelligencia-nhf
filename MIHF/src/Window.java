@@ -13,7 +13,8 @@ import java.util.ArrayList;
  */
 public class Window {
     public JFrame frame;
-    public JLabel targynev, targykod;
+    public JLabel targynev, targykod, tkovkod, tsemester, tfelev, tkredit;
+    public JComboBox kovkod, semester, felev, kredit;
     public JTextField tnev, tkod;
     public  JTextArea szoveg;
     public JScrollPane jsp;
@@ -23,16 +24,16 @@ public class Window {
         frame=new JFrame();
         frame.setTitle("SuperMI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(800,800));
+        frame.setMinimumSize(new Dimension(700,700));
         frame.setResizable(false);
 
         szoveg=new JTextArea();
         szoveg.setEditable(true);
         szoveg.setLineWrap(true);
-        szoveg.setRows(15);
-        szoveg.setColumns(30);
+        szoveg.setRows(35);
+        szoveg.setColumns(55);
         jsp= new JScrollPane(szoveg);
-        jsp.setSize(200,200);
+        jsp.setSize(400,400);
 
         targynev=new JLabel("Tárgynév: ");
         targykod=new JLabel("Tárgykód: ");
@@ -97,13 +98,43 @@ public class Window {
         felso.add(targykod);
         felso.add(tkod);
 
-        frame.setLayout(new BorderLayout());
+
+        tkovkod = new JLabel("Követelmény: ");
+        tsemester=  new JLabel("Szemeszter: ");
+        tfelev = new JLabel("Félév: ");
+        tkredit = new JLabel("Kredit: ");
+        kovkod = new JComboBox();
+        semester  = new JComboBox();
+        felev  = new JComboBox();
+        kredit  = new JComboBox();
+        for(int i=0; i<16;i++){
+            kovkod.addItem(Integer.valueOf(i));
+            semester.addItem(Integer.valueOf(i));
+            felev.addItem(Integer.valueOf(i));
+            kredit.addItem(Integer.valueOf(i));
+        }
+        JPanel also = new JPanel();
+        also.add(tkovkod);
+        also.add(kovkod);
+        also.add(tsemester);
+        also.add(semester);
+        also.add(tfelev);
+        also.add(felev);
+        also.add(tkredit);
+        also.add(kredit);
+
+
+
+
+
+        frame.setLayout(new FlowLayout());
         frame.add(felso, BorderLayout.NORTH);
+        frame.add(also, BorderLayout.CENTER);
 
 
 
 
-        frame.add(new JPanel().add(jsp), BorderLayout.CENTER);
+        frame.add(new JPanel().add(jsp));
 
         frame.setVisible(true);
     }

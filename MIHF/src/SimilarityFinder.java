@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SimilarityFinder {
 	
-	public static List<Targy> mFullTargyak = new ArrayList<>();
+	public static List<Targy> mFullTargyak = new ArrayList<Targy>();
 	private static void init() throws Exception {
 		int letoltesek = 0; //a targyletoltesek szamanak korlatozasa debughoz
 		for (Targy t : ParseHTML.mTargyak) {
@@ -18,7 +18,7 @@ public class SimilarityFinder {
 		}
 	}
 	private static List<String> kovKodParse(String kod) {
-		List<String> splits = new ArrayList<>();
+		List<String> splits = new ArrayList<String>();
 		if(kod.contains("/")){
 			splits = Arrays.asList(kod.split("/"));
 		} else if(kod.contains("+")){
@@ -42,7 +42,7 @@ public class SimilarityFinder {
 	}
 	public static List<Targy> findSimilar(Targy targy, Suly suly) throws Exception {
 		init();
-		List<Targy> SulyozottTargyak = new ArrayList<>();
+		List<Targy> SulyozottTargyak = new ArrayList<Targy>();
 		List<String> kovetelmenyek = kovKodParse(targy.mKovKod);
 
 		for (Targy t : mFullTargyak) {
@@ -59,7 +59,7 @@ public class SimilarityFinder {
 					}
 				}
 			}
-			//---------------Követelmények sulyozasa-----------------
+			//---------------Kï¿½vetelmï¿½nyek sulyozasa-----------------
 			List<String> tmpKod = kovKodParse(t.mKovKod);
 			if(kovetelmenyek.size() == tmpKod.size()){
 				double kovSim = 0;
