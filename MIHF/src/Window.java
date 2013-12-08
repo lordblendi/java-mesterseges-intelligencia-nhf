@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
@@ -24,14 +25,14 @@ public class Window {
         frame=new JFrame();
         frame.setTitle("SuperMI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(700,700));
+        frame.setMinimumSize(new Dimension(900,650));
         frame.setResizable(false);
 
         szoveg=new JTextArea();
         szoveg.setEditable(true);
         szoveg.setLineWrap(true);
         szoveg.setRows(35);
-        szoveg.setColumns(55);
+        szoveg.setColumns(80);
         jsp= new JScrollPane(szoveg);
         jsp.setSize(400,400);
 
@@ -87,7 +88,20 @@ public class Window {
             @Override
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    szoveg.setText(searchTargykod(tkod.getText()));
+                   ArrayList<Targy> eredmeny = new ArrayList<Targy>();
+                    eredmeny.addAll(searchTargykod(tkod.getText()));
+                    if(eredmeny.isEmpty()){
+                        szoveg.setText("Nincs ilyen tárgy.");
+                    }
+                    else{
+                        String lista = "";
+                        for(Targy t : eredmeny){
+                            lista += t.toString() + "\n";
+
+                        }
+                        szoveg.setText(lista);
+                    }
+                    szoveg.setCaretPosition(0);
                 }
             }
         });
@@ -107,12 +121,19 @@ public class Window {
         semester  = new JComboBox();
         felev  = new JComboBox();
         kredit  = new JComboBox();
+
         for(int i=0; i<16;i++){
             kovkod.addItem(Integer.valueOf(i));
             semester.addItem(Integer.valueOf(i));
             felev.addItem(Integer.valueOf(i));
             kredit.addItem(Integer.valueOf(i));
         }
+        kovkod.setSelectedIndex(1);
+        semester.setSelectedIndex(1);
+        felev.setSelectedIndex(1);
+        kredit.setSelectedIndex(1);
+
+
         JPanel also = new JPanel();
         also.add(tkovkod);
         also.add(kovkod);
@@ -154,17 +175,26 @@ public class Window {
 
     }
 
-    public String searchTargykod(String param){
+    public List<Targy> searchTargykod(String param){
         if(param != null && param.length()>0)   {
             for(Targy t : ParseHTML.mTargyak){
                 if(t.mKod != null && t.mKod.contains(param)){
-                    return t.mNev + ": " + t.mKod;
+                   // public static java.util.List<Targy> findSimilar(Targy targy, Suly suly)
+                    //SimilarityFinder.findSimilar(parseHTML.parseTargy(parseHTML.mTargyak.get(1)), new Suly(1,1,1,1));
+                    //public Suly(double semester, double kovKod, double kredit, double felev){
+                    try{
+
+                        return SimilarityFinder.findSimilar(ParseHTML.parseTargy(t), new Suly(semester.getSelectedIndex(),kovkod.getSelectedIndex(),kredit.getSelectedIndex(),felev.getSelectedIndex()));
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
 
             }
         }
 
-        return "Nincs ilyen tárgy.";
+        return new ArrayList<Targy>();
 
     }
 }

@@ -20,7 +20,7 @@ public class Targy implements Comparable{
 
     @Override
     public String toString(){
-        return "Név: " + mNev + " Kód: " + mKod + " Kredit: " + mKredit + " Szemeszter: " + mSemester + " Félév: " + mFelev;
+        return "Név: " + mNev + "\tKód: " + mKod + "\tPont: " + mSumSuly + "\tKredit: " + mKredit + "\tSzemeszter: " + mSemester + "\tFélév: " + mFelev + "\tKövetelmény: " + mKovKod;
     }
 
 	@Override
