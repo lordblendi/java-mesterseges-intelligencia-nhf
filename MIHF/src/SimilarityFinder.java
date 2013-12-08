@@ -50,7 +50,7 @@ public class SimilarityFinder {
 			//---------------név súlyozása-------------
 			double nevNum = 0;
 			List<String> kivTargyNev = Arrays.asList(targy.mNev.split(" "));
-			List<String> tmpTargyNev = Arrays.asList(targy.mNev.split(" "));
+			List<String> tmpTargyNev = Arrays.asList(t.mNev.split(" "));
 			for (String s1 : kivTargyNev) {
 				for (String s2 : tmpTargyNev) {
 					if(!s1.equalsIgnoreCase("és")){
