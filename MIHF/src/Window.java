@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class Window {
     public JFrame frame;
-    public JLabel targynev, targykod, tkovkod, tsemester, tfelev, tkredit;
-    public JComboBox kovkod, semester, felev, kredit;
+    public JLabel targynev, targykod, tkovkod, tsemester, tfelev, tkredit, tnnev;
+    public JComboBox kovkod, semester, felev, kredit, nev;
     public JTextField tnev, tkod;
     public  JTextArea szoveg;
     public JScrollPane jsp;
@@ -117,21 +117,26 @@ public class Window {
         tsemester=  new JLabel("Szemeszter: ");
         tfelev = new JLabel("Félév: ");
         tkredit = new JLabel("Kredit: ");
+        tnnev = new JLabel("Név: ");
         kovkod = new JComboBox();
         semester  = new JComboBox();
         felev  = new JComboBox();
         kredit  = new JComboBox();
+        nev  = new JComboBox();
+
 
         for(int i=0; i<16;i++){
             kovkod.addItem(Integer.valueOf(i));
             semester.addItem(Integer.valueOf(i));
             felev.addItem(Integer.valueOf(i));
             kredit.addItem(Integer.valueOf(i));
+            nev.addItem(Integer.valueOf(i));
         }
         kovkod.setSelectedIndex(1);
         semester.setSelectedIndex(1);
         felev.setSelectedIndex(1);
         kredit.setSelectedIndex(1);
+        nev.setSelectedIndex(1);
 
 
         JPanel also = new JPanel();
@@ -143,6 +148,8 @@ public class Window {
         also.add(felev);
         also.add(tkredit);
         also.add(kredit);
+        also.add(tnnev);
+        also.add(nev);
 
 
 
@@ -184,7 +191,7 @@ public class Window {
                     //public Suly(double semester, double kovKod, double kredit, double felev){
                     try{
 
-                        return SimilarityFinder.findSimilar(ParseHTML.parseTargy(t), new Suly(semester.getSelectedIndex(),kovkod.getSelectedIndex(),kredit.getSelectedIndex(),felev.getSelectedIndex()));
+                        return SimilarityFinder.findSimilar(ParseHTML.parseTargy(t), new Suly(semester.getSelectedIndex(),kovkod.getSelectedIndex(),kredit.getSelectedIndex(),felev.getSelectedIndex(), nev.getSelectedIndex()));
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
