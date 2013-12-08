@@ -47,19 +47,28 @@ public class SimilarityFinder {
 
 		for (Targy t : mFullTargyak) {
 			double sum = 0;
+			//---------------név súlyozása-------------
+			double nevNum = 0;
+			List<String> kivTargyNev = Arrays.asList(targy.mNev.split(" "));
+			List<String> tmpTargyNev = Arrays.asList(targy.mNev.split(" "));
+			for (String s1 : kivTargyNev) {
+				for (String s2 : tmpTargyNev) {
+					if(!s1.equalsIgnoreCase("és")){
+						if(s1.equalsIgnoreCase(s2)){
+							nevNum += 1/kivTargyNev.size();
+						}
+					}
+				}
+			}
+			sum += suly.mSNev * nevNum;
 			//---------------Szemeszter sulyozasa-------------------
 			if(t.mSemester != null && !t.mSemester.equals("") && targy.mSemester!=null && !t.mSemester.equals("")){
 				if(t.mSemester.equals(targy.mSemester)){
 					sum += suly.mSSemester;
-				} else {
-					int targyFelev = stringToInt(targy.mSemester, 0);
-					int tFelev = stringToInt(t.mSemester, 0);
-					if(targyFelev + 1 == tFelev || targyFelev - 1 == tFelev){
-						sum += suly.mSSemester * 0.1;
-					}
-				}
+				} 
+				
 			}
-			//---------------K�vetelm�nyek sulyozasa-----------------
+			//---------------Követelmények sulyozasa-----------------
 			List<String> tmpKod = kovKodParse(t.mKovKod);
 			if(kovetelmenyek.size() == tmpKod.size()){
 				double kovSim = 0;
