@@ -10,7 +10,7 @@ public class SimilarityFinder {
 	private static void init() throws Exception {
 		int letoltesek = 0; //a targyletoltesek szamanak korlatozasa debughoz
 		for (Targy t : ParseHTML.mTargyak) {
-			if(letoltesek == 50){	//DEBUG!
+			if(letoltesek == 500){	//DEBUG!
 				break;
 			}
 			mFullTargyak.add(ParseHTML.parseTargy(t));
@@ -55,11 +55,12 @@ public class SimilarityFinder {
 				for (String s2 : tmpTargyNev) {
 					if(!s1.equalsIgnoreCase("és")){
 						if(s1.equalsIgnoreCase(s2)){
-							nevNum += 1/kivTargyNev.size();
+							nevNum += (1.0/kivTargyNev.size());
 						}
 					}
 				}
 			}
+			
 			sum += suly.mSNev * nevNum;
 			//---------------Szemeszter sulyozasa-------------------
 			if(t.mSemester != null && !t.mSemester.equals("") && targy.mSemester!=null && !t.mSemester.equals("")){
