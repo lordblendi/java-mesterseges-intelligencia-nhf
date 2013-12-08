@@ -10,7 +10,6 @@ import org.jsoup.select.Elements;
 
 public class ParseHTML {
 	private Document doc;
-	private Document targyOldal;
 	public static List<Targy> mTargyak = new ArrayList<Targy>();
 	public void parse() throws IOException {
 		doc = Jsoup.connect("https://www.vik.bme.hu/kepzes/targyak/").get();
@@ -39,7 +38,8 @@ public class ParseHTML {
 		
 	}
 	
-	public Targy parseTargy(Targy targy) throws Exception {
+	public static Targy parseTargy(Targy targy) throws Exception {
+		Document targyOldal;
 		targyOldal = Jsoup.connect(targy.getURL()).get();
 		Elements tmp = targyOldal.getAllElements();
 		Elements datas = targyOldal.select("#main > table > tbody");
@@ -51,7 +51,9 @@ public class ParseHTML {
 			targy.mFelev = targyAdatok.get(4).text();
 		}
 		else {
-			throw new Exception("T�rgy adatai nem stimmelnek a r�szletes aloldalon!");
+			//throw new Exception("Targy( "+targy.mKod+", "+targy.getURL() + " ) adatai nem stimmelnek a reszletes aloldalon!");
+			//nem annyira fontosak a helyes adatok minden targynal TODO nehany oldal ossze van ganyolva meg egy tablazattal
+			
 		}
 		
 		return targy;

@@ -12,14 +12,14 @@ public class MIHFProgram {
 			e.printStackTrace();
 		}
 
-        Window w = new Window();
-		/*//egy adott t�rgy r�szletes adatainak a lek�r�se:
+       // Window w = new Window();
+		//egy adott targy alapjan a tobbihez valo hasonlosag szamitasa (a targyak szamat a SimilarityFinder initjeben lehet allitani!!!):
 		try {
-			parseHTML.parseTargy(parseHTML.mTargyak.get(1));
+			SimilarityFinder.findSimilar(parseHTML.parseTargy(parseHTML.mTargyak.get(1)), new Suly(1,1,1,1));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 	}
 
