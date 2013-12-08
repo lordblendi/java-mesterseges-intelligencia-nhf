@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +23,7 @@ public class Window {
         frame=new JFrame();
         frame.setTitle("SuperMI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(500,500));
+        frame.setMinimumSize(new Dimension(800,800));
         frame.setResizable(false);
 
         szoveg=new JTextArea();
@@ -54,7 +55,19 @@ public class Window {
             @Override
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    szoveg.setText(searchTargynev(tnev.getText()));
+                    ArrayList<Targy> eredmeny =searchTargynev(tnev.getText());
+                    if(eredmeny.isEmpty()){
+                        szoveg.setText("Nincs ilyen tárgy.");
+                    }
+                    else{
+                        String lista = "";
+                        for(Targy t : eredmeny){
+                            lista += t.toString() + "\n";
+
+                        }
+                        szoveg.setText(lista);
+                    }
+
                 }
             }
         });
@@ -95,16 +108,18 @@ public class Window {
         frame.setVisible(true);
     }
 
-    public String searchTargynev(String param){
+    public ArrayList<Targy> searchTargynev(String param){
         if(param != null && param.length()>0)   {
+            ArrayList<Targy> keresett = new ArrayList<Targy>();
             for(Targy t : ParseHTML.mTargyak){
-                if(t.mNev!=null && t.mNev.contains(param)){
-                    return t.mNev + ": " + t.mKod;
+                if(t.mNev!=null && (t.mNev.toLowerCase()).contains(param.toLowerCase())){
+                    keresett.add(t);
                 }
 
             }
+            return keresett;
         }
-        return "Nincs ilyen tárgy.";
+        return new ArrayList<Targy>();
 
     }
 

@@ -11,4 +11,9 @@ public class Targy {
 	public String getURL() {
 		return "https://www.vik.bme.hu" + relURL;
 	}
+
+    @Override
+    public String toString(){
+        return "Név: " + mNev + " Kód: " + mKod + " Kredit: " + mKredit + " Szemeszter: " + mSemester + " Félév: " + mFelev;
+    }
 }
