@@ -23,6 +23,10 @@ public class Targy implements Comparable{
         return "Név: " + mNev + "\tKód: " + mKod + "\tPont: " + mSumSuly + "\tKredit: " + mKredit + "\tSzemeszter: " + mSemester + "\tFélév: " + mFelev + "\tKövetelmény: " + mKovKod;
     }
 
+    public String toText(){
+        return mNev + " (" + mKod + "), ";
+    }
+
 	@Override
 	public int compareTo(Object t) {
 		Targy tmp = (Targy)t;
