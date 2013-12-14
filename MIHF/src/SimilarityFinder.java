@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,13 +13,25 @@ public class SimilarityFinder {
 	
 	public static List<Targy> mFullTargyak = new ArrayList<Targy>();
 	private static void init() throws Exception {
-		int letoltesek = 0; //a targyletoltesek szamanak korlatozasa debughoz
-		for (Targy t : ParseHTML.mTargyak) {
-			if(letoltesek == 500){	//DEBUG!
-				break;
+		File f = new File("savedTargyak.txt");
+		if(f.exists()) {
+			FileInputStream fis = new FileInputStream("savedTargyak.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			mFullTargyak = (List<Targy>) ois.readObject();
+			ois.close();
+		} else {
+			int letoltesek = 0; //a targyletoltesek szamanak korlatozasa debughoz
+			for (Targy t : ParseHTML.mTargyak) {
+				if(letoltesek == 50){	//DEBUG!
+					break;
+				}
+				mFullTargyak.add(ParseHTML.parseTargy(t));
+				//letoltesek++;	//DEBUG!
 			}
-			mFullTargyak.add(ParseHTML.parseTargy(t));
-			letoltesek++;	//DEBUG!
+			FileOutputStream fos = new FileOutputStream("savedTargyak.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(mFullTargyak);
+			oos.close();
 		}
 	}
 	private static List<String> kovKodParse(String kod) {
