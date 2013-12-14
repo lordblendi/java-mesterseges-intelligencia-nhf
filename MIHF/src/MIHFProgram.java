@@ -4,7 +4,6 @@ import java.io.IOException;
 public class MIHFProgram {
 	         static ParseHTML parseHTML = new ParseHTML();
 	public static void main(String[] args) {
-
 		try {
 			parseHTML.parse();
 		} catch (IOException e) {
