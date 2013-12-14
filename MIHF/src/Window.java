@@ -168,14 +168,14 @@ public class Window {
         kredit.setSelectedIndex(1);
         nev.setSelectedIndex(1);
 
-        targyak = new JTextArea("Jelenleg nincsenek hozzáadott tárgyak.");
+        targyak = new JTextArea();
         targyak.setEditable(false);
         targyak.setLineWrap(true);
-        targyak.setBackground(new Color(0,0,0,0));
         targyak.setColumns(80);
         targyak.setRows(15);
+        refreshText();
         jsp2= new JScrollPane(targyak);
-        jsp2.setSize(100,100);
+        jsp2.setSize(50,50);
 
         JPanel also = new JPanel();
         also.add(tkovkod);
@@ -189,12 +189,12 @@ public class Window {
         also.add(tnnev);
         also.add(nev);
 
-        frame.setLayout(new FlowLayout());
-        frame.add(felso, BorderLayout.NORTH);
-        frame.add(also, BorderLayout.CENTER);
+        frame.getContentPane().setLayout(new FlowLayout());
+        frame.getContentPane().add(felso);
+        frame.getContentPane().add(also);
 
-        frame.add(new JPanel().add(jsp));
-        frame.add(jsp2, BorderLayout.SOUTH);
+        frame.getContentPane().add(jsp);
+        frame.getContentPane().add(jsp2);
         frame.setVisible(true);
     }
 
@@ -231,10 +231,9 @@ public class Window {
     public void addTargy(String param){
         if(param != null && param.length()>0)   {
             for(Targy t : ParseHTML.mTargyak){
-                if(t.mKod != null && t.mKod.contains(param)){
+                if(t.mKod != null && t.mKod.equals(param)){
                    kivalasztottak.add(t);
-                   return;
-
+                    return;
                 }
             }
         }
@@ -246,21 +245,19 @@ public class Window {
                 if(t.mKod != null && t.mKod.contains(param)){
                     kivalasztottak.remove(t);
                     return;
-
                 }
             }
         }
     }
 
     public void refreshText(){
-        targyak.setText("");
+        System.out.println("refresh");
         if(kivalasztottak.size()>0){
            String s = "Hozzáadott tárgyak: ";
             for(Targy t : kivalasztottak){
-                s+=t.toText();
+                s= s + t.toText();
             }
-            s=s.substring(0, s.length()-2);
-            targyak.setText(s);
+            targyak.setText(s.substring(0, s.length()-2));
 
         }   else{
             targyak.setText("Jelenleg nincsenek hozzáadott tárgyak.");
