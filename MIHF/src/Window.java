@@ -34,7 +34,7 @@ public class Window {
         kivalasztottak = new ArrayList<Targy>();
 
         szoveg=new JTextArea();
-        szoveg.setEditable(true);
+        szoveg.setEditable(false);
         szoveg.setLineWrap(true);
         szoveg.setRows(25);
         szoveg.setColumns(80);
@@ -251,7 +251,6 @@ public class Window {
     }
 
     public void refreshText(){
-        System.out.println("refresh");
         if(kivalasztottak.size()>0){
            String s = "Hozzáadott tárgyak: ";
             for(Targy t : kivalasztottak){
