@@ -10,7 +10,7 @@ public class SimilarityFinder {
 	private static void init() throws Exception {
 		int letoltesek = 0; //a targyletoltesek szamanak korlatozasa debughoz
 		for (Targy t : ParseHTML.mTargyak) {
-			if(letoltesek == 500){	//DEBUG!
+			if(letoltesek == 50){	//DEBUG!
 				break;
 			}
 			mFullTargyak.add(ParseHTML.parseTargy(t));
