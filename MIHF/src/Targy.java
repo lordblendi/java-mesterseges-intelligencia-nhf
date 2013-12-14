@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public class Targy implements Comparable{
+
+public class Targy implements Comparable, Serializable{
 	
 	public String mKod = "";
 	public String mNev = "";
