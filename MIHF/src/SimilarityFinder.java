@@ -12,7 +12,7 @@ import java.util.List;
 public class SimilarityFinder {
 	
 	public static List<Targy> mFullTargyak = new ArrayList<Targy>();
-	private static void init() throws Exception {
+	public static void init() throws Exception {
 		File f = new File("savedTargyak.txt");
 		if(f.exists()) {
 			FileInputStream fis = new FileInputStream("savedTargyak.txt");
@@ -102,8 +102,8 @@ public class SimilarityFinder {
 					sum += suly.mSKovKod * (kovSim);
 				}
 				//-----------------Kredit sulyozasa--------------------
-				int targyKredit = stringToInt(targy.mKredit, -10);
-				int tKredit = stringToInt(t.mKredit, -100);
+				int targyKredit = stringToInt(targy.mKredit.trim(), -10);
+				int tKredit = stringToInt(t.mKredit.trim(), -100);
 				if(targyKredit == tKredit){
 					sum += suly.mSKredit;
 				} else if(targyKredit + 1 == tKredit || targyKredit-1 == tKredit) {

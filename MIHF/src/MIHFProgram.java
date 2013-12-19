@@ -7,6 +7,13 @@ public class MIHFProgram {
 	         static ParseHTML parseHTML = new ParseHTML();
 	public static void main(String[] args) {
 		try {
+			SimilarityFinder.init();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ParseHTML.mTargyak = SimilarityFinder.mFullTargyak;
+		try {
 			parseHTML.parse();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
