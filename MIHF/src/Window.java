@@ -201,7 +201,7 @@ public class Window {
     public ArrayList<Targy> searchTargynev(String param){
         if(param != null && param.length()>0)   {
             ArrayList<Targy> keresett = new ArrayList<Targy>();
-            for(Targy t : ParseHTML.mTargyak){
+            for(Targy t : SimilarityFinder.mFullTargyak){
                 if(t.mNev!=null && (t.mNev.toLowerCase()).contains(param.toLowerCase())){
                     keresett.add(t);
                 }
@@ -230,7 +230,7 @@ public class Window {
 
     public void addTargy(String param){
         if(param != null && param.length()>0)   {
-            for(Targy t : ParseHTML.mTargyak){
+            for(Targy t : SimilarityFinder.mFullTargyak){
                 if(t.mKod != null && t.mKod.equals(param)){
                    kivalasztottak.add(t);
                     return;

@@ -12,7 +12,6 @@ public class MIHFProgram {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		ParseHTML.mTargyak = SimilarityFinder.mFullTargyak;
 		try {
 			parseHTML.parse();
 		} catch (IOException e) {
