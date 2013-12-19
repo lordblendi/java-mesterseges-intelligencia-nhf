@@ -81,7 +81,7 @@ public class SimilarityFinder {
 				
 				sum += suly.mSNev * nevNum;
 				//---------------Szemeszter sulyozasa-------------------
-				if(t.mSemester != null && !t.mSemester.equals("") && targy.mSemester!=null && !t.mSemester.equals("")){
+				if(t.mSemester != null || !t.mSemester.equals("") || targy.mSemester!=null || !t.mSemester.equals("")){
 					if(t.mSemester.equals(targy.mSemester)){
 						sum += suly.mSSemester;
 					} 
