@@ -87,6 +87,12 @@ public class SimilarityFinder {
 					} 
 					
 				}
+				//----------------Félév súlyozása------------------------
+				if(!targy.mFelev.isEmpty() || !t.mFelev.isEmpty() )
+					if(targy.mFelev.equals(t.mFelev)) {
+						sum += suly.mSFelev;
+					}
+				
 				//---------------Követelmények sulyozasa-----------------
 				List<String> tmpKod = kovKodParse(t.mKovKod);
 				if(kovetelmenyek.size() == tmpKod.size()){
