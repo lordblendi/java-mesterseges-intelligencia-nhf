@@ -72,7 +72,7 @@ public class Window {
                     else{
                         String lista = "";
                         for(Targy t : eredmeny){
-                            lista += t.toString() + "\n";
+                            lista += eredmeny.indexOf(t) + ". " + t.toString() + "\n";
 
                         }
                         szoveg.setText(lista);
