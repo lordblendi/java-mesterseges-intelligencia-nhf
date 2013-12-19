@@ -57,6 +57,15 @@ public class SimilarityFinder {
 	        return _default;
 	    }
 	}
+	private static int kovMatch(String kovKod1, String kovKod2, String kov) {
+		if(kovKod1.contains(kov) && kovKod2.contains(kov)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+	
 	public static List<Targy> findSimilar(List<Targy> kivTargyak, Suly suly) throws Exception {
 		init();
 		for (Targy targy : kivTargyak) {
@@ -94,7 +103,14 @@ public class SimilarityFinder {
 					}
 				
 				//---------------Követelmények sulyozasa-----------------
-				List<String> tmpKod = kovKodParse(t.mKovKod);
+				int match = 0;
+				match += kovMatch(targy.mKovKod, t.mKovKod, "v");
+				match += kovMatch(targy.mKovKod, t.mKovKod, "f");
+				match += kovMatch(targy.mKovKod, t.mKovKod, "a");
+				if(match > 0) {
+					sum += suly.mSKovKod;
+				}
+				/*List<String> tmpKod = kovKodParse(t.mKovKod);
 				if(kovetelmenyek.size() == tmpKod.size()){
 					double kovSim = 0;
 					for (String k : tmpKod) {
@@ -106,7 +122,7 @@ public class SimilarityFinder {
 						
 					}
 					sum += suly.mSKovKod * (kovSim);
-				}
+				}*/
 				//-----------------Kredit sulyozasa--------------------
 				int targyKredit = stringToInt(targy.mKredit.trim(), -10);
 				int tKredit = stringToInt(t.mKredit.trim(), -100);
