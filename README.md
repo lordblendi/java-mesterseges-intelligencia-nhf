@@ -10,6 +10,11 @@ A mai internetes marketing nagyban épít az ajánló rendszerekre, mivel a felh
 
 A legnagyobb és legnépszerűbb szolgáltatások, ahol ilyen ajánló rendszerek működnek, pl. a YouTube, Amazon, Facebook. Az alábbi képen pl. látható, hogy az Amazon megjegyezte, hogy megtekintettem az Effective Java c. könyvet és tőle jobbra a “Similar items avaliable...” címszó alatt ajánlott ehhez hasonló könyveket.
 
+## Dokumentáció
+
+[A pdf dokumentáció megtalálható itt.](https://github.com/lordblendi/java-mesterseges-intelligencia-nhf/blob/master/docs/dokumentacio.pdf)
+
+
 ## Fordítás és futtatás
 
 ``` bash
